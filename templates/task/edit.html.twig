@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Modifier la tâche</h1>
+    <div style="margin-bottom: 1rem;">
+        <a href="{{ path('task_index') }}" style="color: #4c7eaf;">&larr; Retour à la liste</a>
+    </div>
+    <div>
+        {{ form_start(form, {'attr': {'style': 'display: flex; flex-direction: column; gap: 1rem;'}}) }}
+        {{ form_widget(form, {'attr': {'style': 'padding: 1rem; border: 1px solid #ddd; border-radius: 5px;'}}) }}
+        <button type="submit">Enregistrer les modifications</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
