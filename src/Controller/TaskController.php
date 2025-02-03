@@ -18,8 +18,14 @@ class TaskController extends AbstractController
     {
         $tasks = $entityManager->getRepository(Task::class)->findAll();
 
+        // Calcul de la progression des tâches
+        $totalTasks = count($tasks);
+        $completedTasks = count(array_filter($tasks, fn($task) => $task->isCompleted()));
+        $completionRate = $totalTasks > 0 ? ($completedTasks / $totalTasks) * 100 : 0;
+
         return $this->render('task/index.html.twig', [
             'tasks' => $tasks,
+            'completionRate' => $completionRate,
         ]);
     }
 
@@ -59,7 +65,6 @@ class TaskController extends AbstractController
         ]);
     }
 
-
     #[Route('/{id}/delete', name: 'task_delete', methods: ['POST'])]
     public function delete(Request $request, Task $task, EntityManagerInterface $entityManager): Response
     {
@@ -70,5 +75,4 @@ class TaskController extends AbstractController
 
         return $this->redirectToRoute('task_index');
     }
-
 }
