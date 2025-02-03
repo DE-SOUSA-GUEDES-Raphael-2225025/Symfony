@@ -9,21 +9,36 @@
 <body class="flex flex-col min-h-screen bg-gradient-to-b from-gray-100 to-gray-300 text-gray-900">
 
 <header class="bg-blue-600 text-white py-6 shadow-lg">
-    <div class="container mx-auto text-center">
+    <div class="container mx-auto flex items-center justify-center relative px-6">
         <h1 class="text-4xl font-extrabold tracking-wide uppercase">📝 To-Do List</h1>
+
+        <a href="{{ path('app_login') }}"
+           class="absolute right-1 bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition duration-300 shadow-md">
+            🔑 Connexion
+        </a>
     </div>
 </header>
+{% for message in app.flashes('success') %}
+    <div class="bg-green-100 text-green-700 p-4 rounded-lg mb-4">
+        {{ message }}
+    </div>
+{% endfor %}
+
+{% for message in app.flashes('verify_email_error') %}
+    <div class="bg-red-100 text-red-700 p-4 rounded-lg mb-4">
+        {{ message }}
+    </div>
+{% endfor %}
 
 <main class="flex-1 flex justify-center items-center p-6">
     <div class="bg-white shadow-2xl rounded-xl p-8 max-w-2xl w-full border border-gray-200">
-        <h2 class="text-2xl font-semibold text-center mb-4 text-gray-800">Tes tâches</h2>
         <div class="border-b mb-4"></div>
         {% block body %}{% endblock %}
     </div>
 </main>
 
 <footer class="bg-gray-900 text-white py-4 text-center text-sm">
-    <p>&copy; 2025 - Fait avec Tailwind</p>
+    <p>&copy; Raphael_De_Sousa_Guedes_2025 - Fait avec Tailwind</p>
 </footer>
 
 </body>

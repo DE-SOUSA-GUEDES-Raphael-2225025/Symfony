@@ -1,14 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Modifier la tâche</h1>
-    <div style="margin-bottom: 1rem;">
-        <a href="{{ path('task_index') }}" style="color: #4c7eaf;">&larr; Retour à la liste</a>
-    </div>
-    <div>
-        {{ form_start(form, {'attr': {'style': 'display: flex; flex-direction: column; gap: 1rem;'}}) }}
-        {{ form_widget(form, {'attr': {'style': 'padding: 1rem; border: 1px solid #ddd; border-radius: 5px;'}}) }}
-        <button type="submit">Enregistrer les modifications</button>
-        {{ form_end(form) }}
+    <div class="max-w-lg mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg border border-gray-200">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">✏ Modifier la tâche</h1>
+
+        <div class="mb-4">
+            <a href="{{ path('task_index') }}" class="text-blue-600 hover:text-blue-800 transition duration-300">
+                &larr; Retour à la liste
+            </a>
+        </div>
+
+        <div>
+            {{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
+
+            <div class="space-y-4">
+                {{ form_widget(form, {'attr': {'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500'}}) }}
+            </div>
+
+            <button type="submit"
+                    class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-md">
+                💾 Enregistrer les modifications
+            </button>
+
+            {{ form_end(form) }}
+        </div>
     </div>
 {% endblock %}
