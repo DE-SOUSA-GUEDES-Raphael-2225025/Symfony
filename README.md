@@ -1,35 +1,47 @@
-📋 To-Do List avec Symfony & Tailwind CSS
+# 📋 To-Do List avec Symfony & Tailwind CSS
 
-🚀 Introduction
+## 🚀 Description
+Ce projet est une application **To-Do List** développée avec **Symfony** et stylisée avec **Tailwind CSS**. Elle permet aux utilisateurs de :
 
-Ce projet est une application To-Do List construite avec Symfony et Tailwind CSS. Elle permet aux utilisateurs de créer, modifier, supprimer et suivre l'état de leurs tâches avec une barre de progression dynamique.
+- 📌 Ajouter de nouvelles tâches
+- ✅ Marquer les tâches comme complétées
+- ✏ Modifier les tâches existantes
+- ❌ Supprimer des tâches
+- 📊 Voir la progression globale avec une barre de progression
 
-📌 Fonctionnalités
+## 🛠️ Installation
 
-✅ Ajout de tâches 📌
-✅ Modification des tâches ✏
-✅ Suppression des tâches ❌
-✅ Suivi de l'état des tâches ✅ / ⏳
-✅ Barre de progression dynamique 📊
-✅ Interface moderne et responsive avec Tailwind CSS 🎨
-
-🛠️ Installation
-
-📥 1. Cloner le projet
-
+### 1️⃣ Cloner le dépôt
+```sh
 git clone https://github.com/votre-repo/todo-list.git
 cd todo-list
+```
 
-⚙ 2. Installer les dépendances PHP
-
+### 2️⃣ Installer les dépendances PHP & JS
+```sh
 composer install
-
-📦 3. Installer les dépendances JavaScript
-
 npm install
+```
 
-🔥 4. Lancer le serveur Symfony
+### 3️⃣ Configurer la base de données
+```sh
+cp .env .env.local  # Modifier DATABASE_URL dans .env.local
+php bin/console doctrine:database:create
+php bin/console doctrine:migrations:migrate
+```
 
+### 4️⃣ Lancer le serveur Symfony
+```sh
 symfony serve
+```
 
-Accéder à l'application sur http://127.0.0.1:8000.
+### 5️⃣ Compiler les assets avec Webpack Encore
+```sh
+npm run dev  # Mode développement
+# ou
+npm run build  # Mode production
+```
+
+
+
+
