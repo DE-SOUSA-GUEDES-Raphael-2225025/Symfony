@@ -4,16 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}To-Do List{% endblock %}</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<header>
-    <h1>Task</h1>
+<body class="flex flex-col min-h-screen bg-gradient-to-b from-gray-100 to-gray-300 text-gray-900">
+
+<header class="bg-blue-600 text-white py-6 shadow-lg">
+    <div class="container mx-auto text-center">
+        <h1 class="text-4xl font-extrabold tracking-wide uppercase">📝 To-Do List</h1>
+    </div>
 </header>
-<main>
-    {% block body %}{% endblock %}
+
+<main class="flex-1 flex justify-center items-center p-6">
+    <div class="bg-white shadow-2xl rounded-xl p-8 max-w-2xl w-full border border-gray-200">
+        <h2 class="text-2xl font-semibold text-center mb-4 text-gray-800">Tes tâches</h2>
+        <div class="border-b mb-4"></div>
+        {% block body %}{% endblock %}
+    </div>
 </main>
-<footer>
+
+<footer class="bg-gray-900 text-white py-4 text-center text-sm">
+    <p>&copy; 2025 - Fait avec Tailwind</p>
 </footer>
+
 </body>
 </html>

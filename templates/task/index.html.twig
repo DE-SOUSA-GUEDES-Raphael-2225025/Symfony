@@ -1,24 +1,44 @@
-
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Liste des tâches</h1>
-    <a href="{{ path('task_new') }}">Créer une nouvelle tâche</a>
-    <ul>
-        {% for task in tasks %}
-            <li>
-                <strong>{{ task.title }}</strong> - {{ task.description }}
-                {% if task.isCompleted %}
-                    <span style="color: green;">[Terminé]</span>
-                {% else %}
-                    <span style="color: red;">[En cours]</span>
-                {% endif %}
-                <a href="{{ path('task_edit', {id: task.id}) }}">Modifier</a>
-                <form method="post" action="{{ path('task_delete', {id: task.id}) }}" style="display:inline;">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ task.id) }}">
-                    <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?');">Supprimer</button>
-                </form>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="max-w-2xl mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg border border-gray-200">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">📋 Liste des tâches</h1>
+
+        <div class="flex justify-end mb-4">
+            <a href="{{ path('task_new') }}"
+               class="bg-blue-600 text-white py-2 px-4 rounded-lg text-sm font-semibold hover:bg-blue-700 transition duration-300 shadow-md">
+                ➕ Créer une nouvelle tâche
+            </a>
+        </div>
+
+        <ul class="space-y-4">
+            {% for task in tasks %}
+                <li class="p-4 bg-gray-100 rounded-lg shadow-sm border border-gray-300 flex justify-between items-center">
+                    <div>
+                        <strong class="text-lg text-gray-800">{{ task.title }}</strong>
+                        <p class="text-gray-600">{{ task.description }}</p>
+                        <span class="text-sm font-semibold {% if task.isCompleted %}text-green-600{% else %}text-red-600{% endif %}">
+                            {{ task.isCompleted ? '✅ Terminé' : '⏳ En cours' }}
+                        </span>
+                    </div>
+                    <div class="flex space-x-2">
+                        <a href="{{ path('task_edit', {id: task.id}) }}"
+                           class="bg-yellow-500 text-white py-1 px-3 rounded-lg text-sm font-semibold hover:bg-yellow-600 transition duration-300 shadow-md">
+                            ✏ Modifier
+                        </a>
+                        <form method="post" action="{{ path('task_delete', {id: task.id}) }}"
+                              onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ task.id) }}">
+                            <button type="submit"
+                                    class="bg-red-600 text-white py-1 px-3 rounded-lg text-sm font-semibold hover:bg-red-700 transition duration-300 shadow-md">
+                                ❌ Supprimer
+                            </button>
+                        </form>
+                    </div>
+                </li>
+            {% else %}
+                <p class="text-center text-gray-500">Aucune tâche enregistrée.</p>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}
