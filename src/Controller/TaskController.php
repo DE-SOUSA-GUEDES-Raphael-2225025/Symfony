@@ -10,7 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Task;
 use App\Form\TaskType;
 
-#[Route('/task')]
+#[Route('/task' )]
 class TaskController extends AbstractController
 {
     #[Route('/', name: 'task_index')]
