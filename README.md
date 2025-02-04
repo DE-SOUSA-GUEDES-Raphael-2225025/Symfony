@@ -41,6 +41,7 @@ npm run dev  # Mode développement
 # ou
 npm run build  # Mode production
 ```
+
 ## 🚀 Accéder à l'application
 Après avoir lancé Symfony avec `symfony serve`, ouvrez votre navigateur et accédez à :
 ```
@@ -48,7 +49,10 @@ http://127.0.0.1:8000/task
 ```
 Cela affichera la page principale de la To-Do List.
 
+---
 
+## 👤 **Compte Administrateur**
+Un compte administrateur par défaut est disponible pour tester l'application :
 
-
-
+- **📧 Adresse email :** `admin@exampl.com`
+- **🔑 Mot de passe :** `12345`
