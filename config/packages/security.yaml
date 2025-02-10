@@ -17,6 +17,9 @@ security:
         username_parameter: _username
         password_parameter: _password
         default_target_path: task_index
+      logout:
+        path: /logout
+        target: /task
 
       remember_me:
         secret: "%kernel.secret%"

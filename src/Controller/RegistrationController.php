@@ -48,25 +48,9 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // Générer un lien de confirmation et envoyer un email
-            $signatureComponents = $this->emailVerifier->generateSignature(
-                'app_verify_email',
-                $user->getId(),
-                $user->getEmail()
-            );
 
-            $email = (new TemplatedEmail())
-                ->from(new Address('adress@gmail.com', 'Raphael'))
-                ->to($user->getEmail())
-                ->subject('Confirmez votre email')
-                ->htmlTemplate('registration/confirmation_email.html.twig')
-                ->context([
-                    'signedUrl' => $signatureComponents->getSignedUrl(),
-                ]);
 
-            $this->emailVerifier->sendEmailConfirmation($email);
-
-            $this->addFlash('success', 'Un email de confirmation vous a été envoyé.');
+            $this->addFlash('success', 'Confirmation de la création du compte.');
 
             return $this->redirectToRoute('app_login');
         }
