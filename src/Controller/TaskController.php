@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,9 +15,12 @@ use App\Form\TaskType;
 #[Route('/task' )]
 class TaskController extends AbstractController
 {
+
     #[Route('/', name: 'task_index')]
     public function index(EntityManagerInterface $entityManager): Response
     {
+
+
         $tasks = $entityManager->getRepository(Task::class)->findAll();
 
         // Calcul de la progression des tâches
@@ -65,6 +69,7 @@ class TaskController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
 
     #[Route('/{id}/delete', name: 'task_delete', methods: ['POST'])]
     public function delete(Request $request, Task $task, EntityManagerInterface $entityManager): Response
