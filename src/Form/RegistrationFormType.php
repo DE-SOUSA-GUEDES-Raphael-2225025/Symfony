@@ -3,6 +3,9 @@
 namespace App\Form;
 
 use App\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Email as EmailConstraint;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -19,6 +22,28 @@ class RegistrationFormType extends AbstractType
             ->add('username', TextType::class, [
                 'label' => 'Nom d\'utilisateur',
                 'attr' => ['placeholder' => 'Entrez votre nom d\'utilisateur']
+            ])
+            ->add('email', EmailType::class, [
+                'label' => 'Email',
+                'attr' => ['placeholder' => 'Entrez votre email'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer une adresse email.',
+                    ]),
+                    new EmailConstraint([
+                        'message' => 'L\'adresse email "{{ value }}" n\'est pas valide.',
+                    ]),
+                ],
+            ])
+
+            ->add('username', TextType::class, [
+                'label' => 'Nom d\'utilisateur',
+                'attr' => ['placeholder' => 'Entrez votre nom d\'utilisateur']
+            ])
+            ->add('plainPassword', PasswordType::class, [
+                'mapped' => false,
+                'label' => 'Mot de passe',
+                'attr' => ['autocomplete' => 'new-password', 'placeholder' => 'Entrez un mot de passe sécurisé'],
             ])
             ->add('plainPassword', PasswordType::class, [
                 'mapped' => false,
