@@ -11,16 +11,21 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Task;
 use App\Form\TaskType;
+use App\Service\ApiService;
 
-#[Route('/task' )]
+#[Route('/task')]
 class TaskController extends AbstractController
 {
+    private ApiService $apiService;
+
+    public function __construct(ApiService $apiService)
+    {
+        $this->apiService = $apiService;
+    }
 
     #[Route('/', name: 'task_index')]
     public function index(EntityManagerInterface $entityManager): Response
     {
-
-
         $tasks = $entityManager->getRepository(Task::class)->findAll();
 
         // Calcul de la progression des tâches
@@ -28,9 +33,12 @@ class TaskController extends AbstractController
         $completedTasks = count(array_filter($tasks, fn($task) => $task->isCompleted()));
         $completionRate = $totalTasks > 0 ? ($completedTasks / $totalTasks) * 100 : 0;
 
+        // 🔥 Récupérer les drapeaux depuis l’API
+        $flags = $this->apiService->getFlags();
         return $this->render('task/index.html.twig', [
             'tasks' => $tasks,
             'completionRate' => $completionRate,
+            'flags' => $flags,
         ]);
     }
 
