@@ -6,7 +6,7 @@ use App\Repository\TaskRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 
-#[ApiResource]
+
 #[ORM\Entity(repositoryClass: TaskRepository::class)]
 class Task
 {
