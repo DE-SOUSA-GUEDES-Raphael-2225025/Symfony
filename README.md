@@ -8,6 +8,7 @@ Ce projet est une application **To-Do List** développée avec **Symfony** et st
 - ✏ Modifier les tâches existantes
 - ❌ Supprimer des tâches
 - 📊 Voir la progression globale avec une barre de progression
+- Affichage de drapeaux grace a une api externe 
 
 ## 🛠️ Installation
 
