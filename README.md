@@ -46,8 +46,8 @@ npm run build  # Mode production
 ## 🚀 Accéder à l'application
 Après avoir lancé Symfony avec `symfony serve`, ouvrez votre navigateur et accédez à :
 ```
-http://127.0.0.1:8000/login
-http://127.0.0.1:8000/task
+http://127.0.0.1:8001/login
+http://127.0.0.1:8001/task
 
 ```
 Cela affichera la page principale de la To-Do List.
